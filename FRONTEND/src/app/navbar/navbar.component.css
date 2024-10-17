@@ -1,47 +1,139 @@
-/* Navbar Styling */
+/* Enhanced Modern Navbar Styling */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Ensure items are spaced properly */
-    background-color: #405D72;
-    padding: 5px 10px; /* Reduced padding for a more compact look */
-    margin-bottom: 0; /* Remove bottom margin to eliminate space below the navbar */
-    box-shadow: none; /* Remove any box shadow if applied */
-    width: 100%; /* Ensure the navbar covers the full width of the viewport */
-    box-sizing: border-box; /* Include padding in the width calculation */
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-/* Additional styling to ensure there is no space below the navbar */
 body {
-    margin: 0; /* Ensure no default margin on the body */
+    margin: 0;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background-color: #f4f7f9;
 }
 
-/* Navbar items */
-.navbar-item, .navbar-item-button {
-    color: #FFF8F3;
-    font-size: 1.2rem; /* Reduced font size for a more professional look */
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2C3E50;
     text-decoration: none;
-    padding: 8px 15px; /* Reduced padding for a more compact look */
-    cursor: pointer; /* Pointer cursor for all navbar items */
+    transition: transform 0.3s ease;
 }
 
-/* Hover effects */
-.navbar-item:hover, .navbar-item-button:hover {
-    color: #758694;
+.navbar-brand:hover {
+    transform: scale(1.05);
 }
 
-/* Special styling for NewsSphere link */
-.navbar-item-button {
-    font-size: 1.5rem; /* Slightly reduced font size for NewsSphere */
-    padding: 10px 20px; /* Reduced padding for NewsSphere */
-    background-color: #405D72; /* Background color */
-    color: #FFF8F3; /* Text color */
-    border-radius: 5px; /* Rounded corners */
-    text-align: center; /* Centered text */
-    text-decoration: none; /* Remove underline */
-    margin-right: 15px; /* Reduced space between NewsSphere and other items */
+.navbar-items {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-/* Move Logout to the right extreme */
+.navbar-item {
+    color: #34495E;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    position: relative;
+}
+
+.navbar-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #3498DB;
+    transition: all 0.3s ease;
+}
+
+.navbar-item:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.navbar-item:hover {
+    color: #3498DB;
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
 .logout {
-    margin-left: auto;
+    background-color: #E74C3C;
+    color: #FFFFFF;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.logout:hover {
+    background-color: #C0392B;
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .navbar-items {
+        margin-top: 1rem;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .navbar-item, .logout {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem;
+        border-radius: 10px;
+    }
+
+    .navbar-item::after {
+        display: none;
+    }
+
+    .logout {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+    }
+
+    .navbar {
+        background-color: rgba(18, 18, 18, 0.8);
+    }
+
+    .navbar-brand {
+        color: #ECF0F1;
+    }
+
+    .navbar-item {
+        color: #BDC3C7;
+    }
+
+    .navbar-item:hover {
+        background-color: rgba(52, 152, 219, 0.2);
+    }
 }
