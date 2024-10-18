@@ -34,7 +34,17 @@ import google.generativeai as genai
 from django.utils import timezone
 logger = logging.getLogger(__name__)
 
-genai.configure(api_key="AIzaSyAsl-bfdt3awt49RrT8rSXl4ClLwyhBbKs")
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access your API key from the environment variables
+api_key = os.getenv("API_KEY")  # Replace with the variable name in your .env file
+
+# Use the API key
+genai.configure(api_key=api_key)
 ai_model = genai.GenerativeModel('gemini-pro')
 
 
