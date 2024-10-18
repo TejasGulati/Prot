@@ -7,10 +7,12 @@ import { ArticlesComponent } from './articles/articles.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { authGuard } from './auth.guard';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'weather', component: WeatherComponent, canActivate: [authGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'articles', component: ArticlesComponent, canActivate: [authGuard] },
   { path: 'article/:id', component: ArticleDetailComponent, canActivate: [authGuard] },

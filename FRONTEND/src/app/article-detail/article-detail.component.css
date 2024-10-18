@@ -33,10 +33,10 @@ body {
 }
 
 .article-detail-container {
-  max-width: 800px;
+  max-width: 1200px;
   width: 90%;
   margin: 5vh auto;
-  padding: 5vw;
+  padding: 40px;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   min-height: calc(90vh - 10vw);
@@ -45,6 +45,35 @@ body {
   position: relative;
   overflow: hidden;
   color: white;
+}
+
+.article-content {
+  color: var(--text-color);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.8;
+  margin-bottom: 5vh;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .article-detail-container {
+    width: calc(100% - 40px);
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .article-detail-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-detail-container {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
 }
 
 .article-detail-container::before {

@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   isCategoryRoute: boolean = false; // Added this property
   isAuthenticated: boolean = false;
   isArticleDetailRoute: boolean = false;
+  isWeatherRoute = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
       this.isBookmarksRoute = this.isBookmarksRouteUrl(url);
       this.isArticleDetailRoute = this.isArticleDetailRouteUrl(url);
       this.isCategoryRoute = this.isCategoryRouteUrl(url); // Update the category route check
+      this.isWeatherRoute = this.isWeatherRouteUrl(url);
 
       // Check authentication status
       this.isAuthenticated = this.authService.isAuthenticated();
@@ -54,6 +56,10 @@ export class AppComponent implements OnInit {
 
   private isArticlesRouteUrl(url: string): boolean {
     return url.startsWith('/articles') && !this.hasQueryParams(url); // Check for articles route and query parameters
+  }
+
+  private isWeatherRouteUrl(url: string): boolean {
+    return url.startsWith('/weather');
   }
 
   private isBookmarksRouteUrl(url: string): boolean {

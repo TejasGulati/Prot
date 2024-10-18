@@ -3,7 +3,8 @@ from dashboard.views import (
     DashboardView, ArticlesView, BookmarksView, 
     NotificationsView, CommentsView, LogoutView, 
     UserArticleViewCountView, BookmarkCountView, 
-    RecommendedArticlesView, TrendingArticlesView
+    RecommendedArticlesView, TrendingArticlesView,
+    WeatherView,
 )
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     path('bookmarks/', BookmarksView.as_view(), name='bookmarks'),
     path('bookmarks/<int:article_id>/', BookmarksView.as_view(), name='bookmark-detail'), 
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('weather/', WeatherView.as_view(), name='weather'),
     path('articles/view-count/', UserArticleViewCountView.as_view(), name='user-article-view-count'),
     path('bookmarks/count/', BookmarkCountView.as_view(), name='bookmark-count'),
     path('articles/recommended/', RecommendedArticlesView.as_view(), name='recommended-articles'),
