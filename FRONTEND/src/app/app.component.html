@@ -222,34 +222,29 @@
         }
 
         .feature-box {
-            padding: 100px 0;
+            padding: 60px 0; /* Reduced padding */
             background: linear-gradient(135deg, #2C3E50, #34495E);
             position: relative;
             overflow: hidden;
         }
 
-        .feature-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, rgba(44, 62, 80, 0.1) 100%);
-            animation: gradientShift 15s ease infinite;
-            z-index: 1;
-        }
-
         .feature-card {
             background: rgba(255, 255, 255, 0.1);
             border: none;
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px; /* Slightly reduced border radius */
+            padding: 25px 20px; /* Reduced padding */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
             position: relative;
             z-index: 2;
             overflow: hidden;
+            height: 100%; /* Ensure equal height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px; /* Consistent spacing */
         }
 
         .feature-card::before {
@@ -264,20 +259,14 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-card:hover::before {
-            top: -50%;
-            left: -50%;
-            transition: all 0.8s ease-out;
+            transform: translateY(-5px) scale(1.02); /* Reduced hover effect */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .feature-icon {
-            font-size: 4rem;
+            font-size: 2.5rem; /* Reduced icon size */
             color: var(--primary-color);
-            margin-bottom: 25px;
+            margin-bottom: 15px; /* Reduced margin */
             transition: var(--transition);
         }
 
@@ -287,17 +276,46 @@
         }
 
         .feature-card h3 {
-            font-size: 2.5rem;
+            font-size: 1.8rem; /* Reduced heading size */
             color: #ECF0F1;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             position: relative;
         }
 
         .feature-card p {
-            font-size: 1.3rem;
+            font-size: 1rem; /* Reduced text size */
             color: #BDC3C7;
             position: relative;
+            margin-bottom: 0;
+            line-height: 1.5;
         }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+
+        .col-md-4 {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .feature-card {
+                margin-bottom: 15px;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-icon {
+                font-size: 2rem;
+            }
+        }
+
 
         .carousel {
             position: relative;
@@ -475,42 +493,67 @@
             <a class="btn hero-btn" routerLink="/login" style="background-color: rgba(0, 0, 0, 0.5);">Login</a>
         </div>
     </section>
-
-    <!-- Features Section -->
-    <section class="feature-box" *ngIf="!isArticleDetailRoute && !isDashboardRoute && !isAuthRoute && !isArticlesRoute && !isBookmarksRoute && !isCategoryRoute &&!isWeatherRoute">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-globe"></i>
-                        </div>
-                        <h3>Global Coverage</h3>
-                        <p>Stay informed with news from around the world, curated just for you.</p>
+<!-- Features Section -->
+<section class="feature-box" *ngIf="!isArticleDetailRoute && !isDashboardRoute && !isAuthRoute && !isArticlesRoute && !isBookmarksRoute && !isCategoryRoute &&!isWeatherRoute">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-globe"></i>
                     </div>
+                    <h3>Global Coverage</h3>
+                    <p>Stay informed with news from around the world, curated just for you.</p>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-graph-up"></i>
-                        </div>
-                        <h3>Real-Time Analytics</h3>
-                        <p>Gain insights with our advanced analytics and trend analysis tools.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-graph-up"></i>
                     </div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Gain insights with our advanced analytics and trend analysis tools.</p>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-person-check"></i>
-                        </div>
-                        <h3>Personalized Experience</h3>
-                        <p>Enjoy a tailored news feed based on your interests and reading habits.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-person-check"></i>
                     </div>
+                    <h3>Personalized Experience</h3>
+                    <p>Enjoy a tailored news feed based on your interests and reading habits.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-fire"></i>
+                    </div>
+                    <h3>Trending Articles</h3>
+                    <p>Discover the hottest stories and most popular content across our platform.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-cloud-sun"></i>
+                    </div>
+                    <h3>Weather Forecasting</h3>
+                    <p>Get accurate weather predictions and AI-powered analysis for your location.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <h3>Comments & Notifications</h3>
+                    <p>Coming Soon: Engage with the community and stay updated with real-time notifications.</p>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Router Outlet -->
     <router-outlet></router-outlet>
 
@@ -518,16 +561,19 @@
     <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel" *ngIf="!isArticleDetailRoute && !isDashboardRoute && !isAuthRoute && !isArticlesRoute && !isBookmarksRoute && !isCategoryRoute &&!isWeatherRoute">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/1.png" class="d-block w-100" alt="Latest News">
+                <img src="assets/1.png" class="d-block w-100 h-100" alt="Latest News">
             </div>
             <div class="carousel-item">
-                <img src="assets/2.png" class="d-block w-100" alt="Technology News">
+                <img src="assets/2.png" class="d-block w-100 h-100" alt="Technology News">
             </div>
             <div class="carousel-item">
-                <img src="assets/3.png" class="d-block w-100" alt="Cultural News">
+                <img src="assets/3.png" class="d-block w-100 h-100" alt="Cultural News">
             </div>
             <div class="carousel-item">
-                <img src="assets/4.png" class="d-block w-100" alt="Cultural News">
+                <img src="assets/4.png" class="d-block w-100 h-100" alt="Cultural News">
+            </div>
+            <div class="carousel-item">
+                <img src="assets/5.png" class="d-block w-100 h-100" alt="Technology News">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
