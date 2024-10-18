@@ -1,7 +1,17 @@
 <nav class="navbar">
-    <a class="navbar-item navbar-item-button" (click)="navigateToDashboard()">NewsSphere</a>
-    <a class="navbar-item" routerLink="/articles">Articles</a>
-    <a class="navbar-item" routerLink="/weather">Weather</a> <!-- New link added -->
-    <a class="navbar-item" routerLink="/bookmarks">Bookmarks</a>
-    <a class="navbar-item logout" (click)="logout()">Logout</a>
+    <a href="/dashboard" class="brand">NewsSphere</a>
+    
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <div class="nav-links">
+        <a href="/articles" class="nav-link">Articles</a>
+        <a href="/weather" class="nav-link">Weather</a>
+        <a href="/bookmarks" class="nav-link">Bookmarks</a>
+        <a href="/logout" class="nav-link logout">Logout</a>
+    </div>
 </nav>

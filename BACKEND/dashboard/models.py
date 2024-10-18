@@ -18,6 +18,7 @@ class Article(models.Model):
     source_url = models.URLField(max_length=500, unique=True)
     media_url = models.URLField(max_length=500, null=True, blank=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    keywords = models.TextField(blank=True)
 
     def __str__(self):
         return self.title

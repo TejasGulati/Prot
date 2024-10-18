@@ -432,7 +432,7 @@
     }
 
     .navbar-items {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
     }
 
@@ -486,7 +486,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section" *ngIf="!isArticleDetailRoute && !isDashboardRoute && !isAuthRoute && !isArticlesRoute && !isBookmarksRoute && !isCategoryRoute &&!isWeatherRoute">
-        <div class="hero-content" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="hero-content" style="background-color: rgba(0, 0, 0, 0.3); margin-left: 10px; margin-right: 10px;">
             <h1>Welcome to NewsSphere</h1>
             <p>Your gateway to global news and insightful articles</p>
             <a class="btn hero-btn me-3" routerLink="/register" style="background-color: rgba(0, 0, 0, 0.5);">Get Started</a>

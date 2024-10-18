@@ -45,6 +45,7 @@ body {
   position: relative;
   overflow: hidden;
   color: white;
+  font-size: 1.3rem;
 }
 
 .article-content {
@@ -131,7 +132,7 @@ body {
 
 .article-image {
   width: 100%;
-  max-height: 50vh;
+  max-height: 100vh;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 5vh;
