@@ -12,7 +12,7 @@
     <div class="container form-container">
         <div class="card">
             <div class="card-body">
-                <h2 class="mb-4 text-center" style="font-size: 40px; color: #405D72;">Register</h2>
+                <h2 class="mb-4 text-center" style="font-size: 40px; color: black;">Register</h2>
                 <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="needs-validation" novalidate>
                     
                     <!-- Name Field -->
@@ -54,7 +54,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                    <button type="submit" class="btn btn-primary w-100" style="background-color: rgba(0,0,0,0.8);">Register</button>
 
                     <!-- Error Message -->
                     <div *ngIf="errorMessage" class="alert alert-danger">

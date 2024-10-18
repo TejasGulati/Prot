@@ -29,13 +29,15 @@ body {
     color: red;
 }
 .btn-primary {
-    background-color: #405D72;
-    border-color: #405D72;
+    background-color: black;
+    border-color: black;
 }
+
 .btn-primary:hover {
-    background-color: #758694;
-    border-color: #758694;
+    background-color: #222222;
+    border-color: #222222;
 }
+
 .invalid-feedback {
     display: block;
     font-size: 0.875em;

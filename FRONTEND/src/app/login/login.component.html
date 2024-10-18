@@ -13,7 +13,7 @@
     <div class="form-container">
         <div class="card">
             <div class="card-body">
-                <h2 class="mb-4 text-center" style="font-size: 40px; color: #405D72;">Login</h2>
+                <h2 class="mb-4 text-center" style="font-size: 40px; color: black;">Login</h2>
                 <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="email" class="form-label required">Email address</label>
@@ -30,7 +30,7 @@
                             <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <button type="submit" class="btn btn-primary w-100" style="background-color: rgba(0,0,0,0.8);">Login</button>
                     <div *ngIf="errorMessage" class="alert alert-danger mt-3">
                         {{ errorMessage }}
                     </div>
