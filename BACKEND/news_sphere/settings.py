@@ -75,7 +75,7 @@ DATABASES = {
         'NAME': 'ppt',
         'USER': 'root',
         'PASSWORD': 'iamnoobokay',
-        'HOST': 'localhost',  # Change to 'db' for Docker
+        'HOST': 'db',  # Change to 'db' for Docker
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
@@ -153,15 +153,6 @@ import os
 # ... other settings
 
 
-CELERY_BEAT_SCHEDULE = {
-    'scrape_articles': {
-        'task': 'dashboard.tasks.scrape_articles',
-        'schedule': crontab(minute=0, hour='*/5'),  # Every 5 hours at the top of the hour
-    },
-}
-
-
-
 # news_sphere/settings.py
 
 # Celery Configuration
@@ -171,6 +162,21 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
+CELERY_BROKER_CONNECTION_RETRY = True
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+
+# Celery Beat Schedule
+CELERY_BEAT_SCHEDULE = {
+    'scrape-articles-task': {
+        'task': 'dashboard.tasks.scrape_articles',
+        'schedule': 1200.0,  # 30 minutes in seconds
+        # Alternative: using crontab
+        # 'schedule': crontab(minute='*/30'),
+    },
+}
+
 
 
 

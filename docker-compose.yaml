@@ -31,7 +31,7 @@ services:
       - DJANGO_SECRET_KEY=django-insecure-p51@0k#j^jfsdo$dyc*5hp&b!-ffap&1&9vdezzp-rgsfovu7&
       - DJANGO_DEBUG=True
       - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
-      - DATABASE_NAME=news_sphere
+      - DATABASE_NAME=ppt
       - DATABASE_USER=root
       - DATABASE_PASSWORD=iamnoobokay
       - DATABASE_HOST=db
@@ -48,7 +48,7 @@ services:
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: iamnoobokay
-      MYSQL_DATABASE: news_sphere
+      MYSQL_DATABASE: ppt
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3307:3306"

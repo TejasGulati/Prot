@@ -33,7 +33,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 requests_cache.install_cache('news_cache', expire_after=3600)  # Cache for 1 hour
 
 # Configure Gemini AI
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("API_KEY"))
 ai_model = genai.GenerativeModel('gemini-pro')
 
 # Define the lists of websites by category
@@ -76,7 +76,8 @@ WEBSITES = {
     ]
 }
 
-MAX_ARTICLES_PER_CATEGORY = 9
+MAX_ARTICLES_PER_CATEGORY = 2  # Number of articles to fetch per category
+ARTICLES_TO_SAVE_PER_CATEGORY = 1 # Number of articles to save per category
 
 class AIContentProcessor:
     @staticmethod
@@ -407,34 +408,56 @@ def scrape_articles():
     session.mount('http://', retry)
     session.mount('https://', retry)
 
+    total_saved = 0
     for category, urls in WEBSITES.items():
         logger.info(f"Scraping category: {category}")
         category_articles = []
-        for url in urls:
-            articles = fetch_articles_from_page(session, category, url)
-            if articles:
-                category_articles.extend(articles)
-            if len(category_articles) >= MAX_ARTICLES_PER_CATEGORY:
-                break
+        saved_for_category = 0
+        
+        while saved_for_category < ARTICLES_TO_SAVE_PER_CATEGORY:
+            for url in urls:
+                if saved_for_category >= ARTICLES_TO_SAVE_PER_CATEGORY:
+                    break
+                articles = fetch_articles_from_page(session, category, url)
+                if articles:
+                    category_articles.extend(articles)
 
-        logger.info(f"Fetched a total of {len(category_articles)} articles for category: {category}")
-        for article_data in category_articles[:MAX_ARTICLES_PER_CATEGORY]:
-            try:
-                Article.objects.update_or_create(
-                    title=article_data['title'],
-                    defaults={
-                        'content': article_data['content'],
-                        'media_url': article_data['media_url'],
-                        'source_url': article_data['source_url'],
-                        'category': article_data['category'],
-                        'keywords': article_data['keywords'],
-                        'created_at': article_data['created_at'],
-                        'updated_at': article_data['updated_at']
-                    }
-                )
-                logger.info(f"Article '{article_data['title']}' saved to database.")
-            except Exception as e:
-                logger.error(f"Error saving article '{article_data['title']}': {e}")
+            logger.info(f"Fetched a total of {len(category_articles)} articles for category: {category}")
+            
+            for article_data in category_articles:
+                if saved_for_category >= ARTICLES_TO_SAVE_PER_CATEGORY:
+                    break
+                try:
+                    _, created = Article.objects.get_or_create(
+                        source_url=article_data['source_url'],
+                        defaults={
+                            'title': article_data['title'],
+                            'content': article_data['content'],
+                            'media_url': article_data['media_url'],
+                            'category': article_data['category'],
+                            'keywords': article_data['keywords'],
+                            'created_at': article_data['created_at'],
+                            'updated_at': article_data['updated_at']
+                        }
+                    )
+                    if created:
+                        logger.info(f"Article '{article_data['title']}' saved to database.")
+                        saved_for_category += 1
+                        total_saved += 1
+                    else:
+                        logger.info(f"Article '{article_data['title']}' already exists in database.")
+                except Exception as e:
+                    logger.error(f"Error saving article '{article_data['title']}': {e}")
+            
+            # Clear the category_articles list to fetch new articles if needed
+            category_articles.clear()
+            
+            if saved_for_category < ARTICLES_TO_SAVE_PER_CATEGORY:
+                logger.info(f"Not enough new articles saved for {category}. Fetching more...")
+            else:
+                logger.info(f"Successfully saved {ARTICLES_TO_SAVE_PER_CATEGORY} articles for {category}")
+
+    logger.info(f"Total articles saved across all categories: {total_saved}")
 
 if __name__ == "__main__":
     scrape_articles()
